@@ -9,7 +9,7 @@ def dfs(v):
 
 
 n = int(input())
-graph = [[] * n for _ in range(n + 1)]
+graph = [[] for _ in range(n + 1)]
 visited = [0] * (n + 1)
 for _ in range(n - 1):
 	a, b = map(int, sys.stdin.readline().split())
