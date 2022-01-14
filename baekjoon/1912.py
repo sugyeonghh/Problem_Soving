@@ -1,10 +1,14 @@
 from sys import stdin
 
 n = int(input())
-a = list(map(int, stdin.readline().split()))
+arr = list(map(int, stdin.readline().split()))
 dp = [0] * n
-dp[0] = a[0]
+dp[0] = arr[0]
 
 for i in range(1, n):
-	dp[i] = max(dp[i - 1], a[i - 1] + a[i], a[i])
-print(dp)
+	if arr[i] > dp[i - 1] + arr[i]:
+		dp[i] = arr[i]
+	else:
+		dp[i] = dp[i- 1] + arr[i]
+
+print(max(dp))
