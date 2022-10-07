@@ -4,27 +4,47 @@
 from sys import stdin
 from collections import deque
 
-def bfs(v):
-	queue = deque()
-	visited[v] = 0
-	queue.append(v)
-	while queue:
-		v = queue.popleft()
-		for i in graph[v]:
-			if graph[i] and not visited[i]:
-				visited[v] = 1
-				queue.append(v)
-
-
 n = int(stdin.readline().strip())
-graph = []
-visited = []
-num = 0
-for _ in range(n):
-	line = list(map(int, stdin.readline().split()))[1:]
-	visited.append([0] * len(line))
-	for i in line:
-		graph.append((num, i))
-	num += 1
-start = 0
+
+# make graph
+graph1 = []
+graph2 = []
+line_num = []
+visited = {}
+for l in range(n):
+	tmp = list(map(int, stdin.readline().split()))
+	num = tmp[0]
+	line = tmp[1:]
+	for i in range(1, num):
+		a1 = line[i - 1]
+		a2 = line[i]
+		if a1 in graph1:
+			idx = graph1.index(a1)
+			graph2[idx].append(a2)
+			visited[a2] = 0
+			line_num[idx].append(l + 1)
+		else:
+			graph1.append(a1)
+			graph2.append([a2])
+			visited[a1] = 0
+			visited[a2] = 0
+			line_num.append([l + 1])
+
 arrival = int(stdin.readline().strip())
+start = 0
+result = 0
+
+queue = deque()
+visited[start] = 1
+queue.append(start)
+while queue:
+	v = queue.popleft()
+	if v in graph1:
+		idx = graph1.index(v)
+		for a in graph2[idx]:
+			if a == arrival:
+				break
+			if a and not visited[a]:
+				visited[a] = 1
+				queue.append(a)
+
