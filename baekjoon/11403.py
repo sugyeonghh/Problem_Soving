@@ -5,7 +5,6 @@ from collections import deque
 INF = maxsize
 N = int(stdin.readline())
 graph = []
-visited = [0] * N
 
 for i in range(N):
     input = list(map(int, stdin.readline().replace('0', str(INF)).split()))
