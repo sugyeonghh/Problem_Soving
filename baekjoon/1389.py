@@ -11,6 +11,9 @@ for i in range(M):
     graph[a - 1][b - 1] = 1
     graph[b - 1][a - 1] = 1
 
+for i in range(N):
+    graph[i][i] = 0
+    
 for k in range(N):
     for a in range(N):
         for b in range(N):
