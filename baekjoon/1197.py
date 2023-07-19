@@ -11,10 +11,10 @@ for i in range(E):
     graph[a].append((v, b))
     graph[b].append((v, a))
 
-q = []
-heappush(q, (0, 1))
 cnt = 0
 answer = 0
+q = []
+heappush(q, (0, 1))
 while q:
     if cnt == V:
         break
